@@ -45,5 +45,9 @@ class BasePage:
     def get_current_url(self):
         return self.driver.current_url
 
+    @allure.step('Ожидаем загрузки URL')
+    def wait_for_url(self, expected_url):
+        WebDriverWait(self.driver, timeout=10).until(EC.url_to_be(expected_url))
+
 
 

@@ -1,5 +1,3 @@
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from curl import *
 import allure
 import pytest
@@ -42,7 +40,8 @@ class TestProfile:
         profile_page = ProfilePage(login)
         profile_page.wait_for_element(ProfilePageLocators.BUTTON_LOGOUT)
         profile_page.logout_profile()
-        WebDriverWait(login, 10).until(EC.url_to_be(login_personal_account))
+
+        profile_page.wait_for_url(login_personal_account)
 
         current_url = main_page.get_current_url()
 
