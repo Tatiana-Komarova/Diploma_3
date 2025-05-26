@@ -7,7 +7,7 @@ from data import *
 
 
 class TestConstructor:
-    @allure.story('Переход по клику на «Конструктор»')
+    @allure.title('Переход по клику на «Конструктор»')
     def test_click_on_constructor(self, driver):
         main_page = MainPage(driver)
         main_page.go_to_profile()
@@ -17,7 +17,7 @@ class TestConstructor:
 
         assert current_url == main_site
 
-    @allure.story('Переход по клику на «Лента заказов»')
+    @allure.title('Переход по клику на «Лента заказов»')
     def test_go_to_orders(self, driver):
         main_page = MainPage(driver)
         main_page.go_to_feed()
@@ -26,7 +26,7 @@ class TestConstructor:
 
         assert current_url == orders
 
-    @allure.story('При клике на ингредиент, появится всплывающее окно с деталями')
+    @allure.title('При клике на ингредиент, появится всплывающее окно с деталями')
     def test_click_on_ingredient_window_open(self, driver):
         main_page = MainPage(driver)
         constructor_page = ConstructorPage(driver)
@@ -36,7 +36,7 @@ class TestConstructor:
 
         assert modal_window.is_displayed()
 
-    @allure.story('всплывающее окно закрывается кликом по крестику')
+    @allure.title('всплывающее окно закрывается кликом по крестику')
     def test_window_closed(self, driver):
         main_page = MainPage(driver)
         constructor_page = ConstructorPage(driver)

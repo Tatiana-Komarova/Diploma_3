@@ -29,7 +29,7 @@ class TestProfile:
 
         current_url = main_page.get_current_url()
 
-        assert current_url == order_story
+        assert current_url == order_history
 
 
     @allure.title('выход из аккаунта')
