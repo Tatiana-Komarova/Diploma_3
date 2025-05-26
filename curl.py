@@ -1,8 +1,8 @@
 
 main_site ='https://stellarburgers.nomoreparties.site/'
 
-forgot_password = 'https://stellarburgers.nomoreparties.site/forgot-password'
-reset_password = 'https://stellarburgers.nomoreparties.site/reset-password'
-login_personal_account = 'https://stellarburgers.nomoreparties.site/login'
-orders = 'https://stellarburgers.nomoreparties.site/feed'
-order_story = 'https://stellarburgers.nomoreparties.site/account/order-history'
+forgot_password = f"{main_site}/forgot-password"
+reset_password = f"{main_site}/reset-password"
+login_personal_account = f"{main_site}/login"
+orders = f"{main_site}/feed"
+order_history = f"{main_site}/account/order-history"

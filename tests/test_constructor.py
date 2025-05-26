@@ -3,6 +3,7 @@ import allure
 import pytest
 from pages.constructor_page import ConstructorPage
 from pages.main_page import MainPage
+from data import *
 
 
 class TestConstructor:
@@ -12,14 +13,18 @@ class TestConstructor:
         main_page.go_to_profile()
         main_page.go_to_constructor()
 
-        assert driver.current_url == main_site
+        current_url = main_page.get_current_url()
+
+        assert current_url == main_site
 
     @allure.story('Переход по клику на «Лента заказов»')
     def test_go_to_orders(self, driver):
         main_page = MainPage(driver)
         main_page.go_to_feed()
 
-        assert driver.current_url == orders
+        current_url = main_page.get_current_url()
+
+        assert current_url == orders
 
     @allure.story('При клике на ингредиент, появится всплывающее окно с деталями')
     def test_click_on_ingredient_window_open(self, driver):
@@ -42,8 +47,8 @@ class TestConstructor:
 
         assert constructor_page.check_window_closed()
 
-    @allure.story('при добавлении ингредиента в заказ, увеличивается каунтер данного ингредиента')
-    @pytest.mark.parametrize("ingredient_name,expected_delta", [ ("Флюоресцентная булка R2-D3", 2), ("Соус фирменный Space Sauce", 1), ("Сыр с астероидной плесенью", 1), ])
+    @allure.title('при добавлении ингредиента в заказ, увеличивается каунтер данного ингредиента')
+    @pytest.mark.parametrize("ingredient_name,expected_delta", ingredient_counter_test_data )
     def test_counter_increase(self, driver, ingredient_name, expected_delta):
         main_page = MainPage(driver)
         main_page.go_to_constructor()
@@ -55,9 +60,8 @@ class TestConstructor:
         assert final_count == initial_count + expected_delta
 
 
-    @allure.story('залогиненный пользователь может оформить заказ')
-    @pytest.mark.parametrize('ingredient_name', [
-        'Флюоресцентная булка R2-D3', 'Соус фирменный Space Sauce', 'Биокотлета из марсианской Магнолии'])
+    @allure.title('залогиненный пользователь может оформить заказ')
+    @pytest.mark.parametrize('ingredient_name', ingredient_order_data )
     def test_auth_user_can_do_order(self, driver, login, ingredient_name):
         driver = login
         main_page = MainPage(login)

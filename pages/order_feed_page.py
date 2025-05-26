@@ -33,7 +33,7 @@ class OrderFeedPage(BasePage):
 
     @allure.step('Получить заказы, которые в рабоет')
     def get_orders_in_process(self) -> list[str]:
-        elements = self.driver.find_elements(*OrderFeedPageLocators.WORK_IN_PROGRESS_ITEMS)
+        elements = self.find_all_elements(OrderFeedPageLocators.WORK_IN_PROGRESS_ITEMS)
         numbers = []
         for element in elements:
             text = element.text.strip()

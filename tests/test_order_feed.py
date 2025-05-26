@@ -6,7 +6,7 @@ from pages.profile_page import ProfilePage
 
 
 class TestOrderFeed:
-    @allure.story('если кликнуть на заказ, откроется всплывающее окно с деталями')
+    @allure.title('если кликнуть на заказ, откроется всплывающее окно с деталями')
     def test_open_order_modal(self, driver):
         main_page = MainPage(driver)
         main_page.go_to_feed()
@@ -17,7 +17,7 @@ class TestOrderFeed:
         assert modal.is_displayed()
 
 
-    @allure.story('заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»')
+    @allure.title('заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»')
     def test_user_order_in_feed(self, login):
         driver = login
         main_page = MainPage(login)
@@ -37,7 +37,7 @@ class TestOrderFeed:
         assert missing
 
 
-    @allure.story('при создании нового заказа счётчик "Выполнено за всё время" увеличивается')
+    @allure.title('при создании нового заказа счётчик "Выполнено за всё время" увеличивается')
     @pytest.mark.parametrize('ingredient_name', [
         'Флюоресцентная булка R2-D3'])
     def test_new_order_increase_counter_for_all_time(self, login, ingredient_name):
@@ -66,7 +66,7 @@ class TestOrderFeed:
 
 
 
-    @allure.story('при создании нового заказа счётчик Выполнено за сегодня увеличивается')
+    @allure.title('при создании нового заказа счётчик Выполнено за сегодня увеличивается')
     @pytest.mark.parametrize('ingredient_name', [
         'Флюоресцентная булка R2-D3'])
     def test_new_order_increase_counter_for_today(self, login, ingredient_name):
@@ -93,7 +93,7 @@ class TestOrderFeed:
 
         assert today_after == today_before + 1
 
-    @allure.story('после оформления заказа его номер появляется в разделе В работе')
+    @allure.title('после оформления заказа его номер появляется в разделе В работе')
     @pytest.mark.parametrize('ingredient_name', [
         'Флюоресцентная булка R2-D3'])
     def test_new_order_in_modal_in_process(self, login, ingredient_name):

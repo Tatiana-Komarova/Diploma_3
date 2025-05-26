@@ -41,5 +41,9 @@ class BasePage:
     def drag_and_drop_element(self, source, target):
         drag_and_drop(self.driver, source, target)
 
+    @allure.step('Получить текущий URL страницы')
+    def get_current_url(self):
+        return self.driver.current_url
+
 
 

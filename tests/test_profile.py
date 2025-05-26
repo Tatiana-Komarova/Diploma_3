@@ -8,14 +8,16 @@ from pages.profile_page import ProfilePage
 from pages.main_page import MainPage
 
 class TestProfile:
-    @allure.story('переход по клику на «Личный кабинет»')
+    @allure.title('переход по клику на «Личный кабинет»')
     def test_click_to_profile(self, driver):
         main_page = MainPage(driver)
         main_page.go_to_profile()
 
-        assert driver.current_url == login_personal_account
+        current_url = main_page.get_current_url()
 
-    @allure.story('переход в раздел «История заказов»')
+        assert current_url == login_personal_account
+
+    @allure.title('переход в раздел «История заказов»')
     def test_go_to_orders(self, login):
         driver = login
         main_page = MainPage(login)
@@ -25,10 +27,12 @@ class TestProfile:
         profile_page = ProfilePage(login)
         profile_page.go_to_orders()
 
-        assert login.current_url == order_story
+        current_url = main_page.get_current_url()
+
+        assert current_url == order_story
 
 
-    @allure.story('выход из аккаунта')
+    @allure.title('выход из аккаунта')
     def test_logout_profile(self, login):
         driver = login
         main_page = MainPage(login)
@@ -40,4 +44,6 @@ class TestProfile:
         profile_page.logout_profile()
         WebDriverWait(login, 10).until(EC.url_to_be(login_personal_account))
 
-        assert login.current_url == login_personal_account
+        current_url = main_page.get_current_url()
+
+        assert current_url == login_personal_account

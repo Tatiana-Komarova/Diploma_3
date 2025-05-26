@@ -5,16 +5,18 @@ from pages.main_page import MainPage
 from data import Credentials
 
 class TestRecovery:
-    @allure.story('Переход на страницу восстановления пароля по кнопке «Восстановить пароль»')
+    @allure.title('Переход на страницу восстановления пароля по кнопке «Восстановить пароль»')
     def test_go_to_recovery(self, driver):
         main_page = MainPage(driver)
         recovery_page = RecoveryPage(driver)
         main_page.go_to_profile()
         recovery_page.go_to_recover()
 
-        assert driver.current_url == forgot_password
+        current_url = main_page.get_current_url()
 
-    @allure.story('Ввод почты и клик по кнопке «Восстановить»')
+        assert current_url == forgot_password
+
+    @allure.title('Ввод почты и клик по кнопке «Восстановить»')
     def test_enter_and_submit_email(self, driver):
         main_page = MainPage(driver)
         recovery_page = RecoveryPage(driver)
@@ -24,9 +26,11 @@ class TestRecovery:
         recovery_page.submit_recovery()
         recovery_page.wait_loading_page()
 
-        assert driver.current_url == reset_password
+        current_url = main_page.get_current_url()
 
-    @allure.story('клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его')
+        assert current_url == reset_password
+
+    @allure.title('клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его')
     def test_toggle_password(self, driver):
         main_page = MainPage(driver)
         recovery_page = RecoveryPage(driver)
